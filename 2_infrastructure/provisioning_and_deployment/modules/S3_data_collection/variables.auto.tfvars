@@ -1,0 +1,5 @@
+access_key = "YOUR KEY HERE"
+secret_key = "YOUR KEY HERE"
+results_bucket_name = "zoll-results"
+data_collection_bucket_name = "zoll-experiment"
+data_assembly_location = "http://X.X.X.X:8080"

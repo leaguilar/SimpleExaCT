@@ -1,0 +1,5 @@
+access_key = "YOUR KEY HERE"
+secret_key = "YOUR KEY HERE"
+region = "us-east-1"
+data_assembly_image_name = "leaguilar/simplevr_data_assembly_service:latest"
+results_bucket_name = "zoll-results"
