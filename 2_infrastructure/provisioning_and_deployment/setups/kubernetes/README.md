@@ -1,5 +1,5 @@
 # Kubernetes cluster provisioning
-
+WIP
 This folder contains all the terraform definitions of the different services
 
 ## Provisioning
@@ -16,11 +16,9 @@ The variables must set in their respective *.auto.tfvars
 For example in kubernetes.auto.tfvars
 ```hcl-terraform
 host                           = "url_cluster:port"
-afinidata_docker_registry      = "url_registry:port"
-afinidata_docker_registry_user = "username"
+docker_registry      = "url_registry:port"
+docker_registry_user = "username"
 ```
-
-Note: this can be done automatically for a local cluster through the scripts in: [/dev/infrastructure/provisioning/local/](../dev/infrastructure/provisioning/local/README.md)
 
 ### Init terraform
 ```commandline
