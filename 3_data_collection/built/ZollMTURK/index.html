@@ -181,25 +181,25 @@
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
       }else{
-        console.log("Failed to communicate to the data assembly service")
+        console.log("Failed to communicate to the data assembly service");
       }
     };
 
-    var expID = getUrlParam('ExpID', 'Emtpy')
-    var group = getUrlParam('group', 'Emtpy')
+    var expID = getUrlParam('ExpID', 'Emtpy');
+    var group = getUrlParam('group', 'Emtpy');
 
 
     if (mapboxgl.supported({ failIfMajorPerformanceCaveat: true })) {
       var gameInstance = UnityLoader.instantiate("gameContainer", "Build/ZollMTURK.json", { onProgress: UnityProgress });
-      var webglState = 'OK'
+      var webglState = 'OK';
       const data = `{"id":"loadingWebGL","sid":"` + webglState + '' + guid + `","eid":"` + expID + `","mid":"0","cat":"` + webglState + `","meta":"` + webglState + ' Group:' + group + `","date":"` + datetime + `"}`;
       xhr.send(data);
       gameInstance.SendMessage('ParticipantInfoPage', 'AssignHost', dataCollectionUrl);
     } else {
-      document.querySelector("#loader > img").src = "fail.png"
+      document.querySelector("#loader > img").src = "fail.png";
       document.querySelector("#loader > div.waitText").style.display = "none";
       document.querySelector("#loader > div.spinner").style.display = "none";
-      var webglState = 'BAD'
+      var webglState = 'BAD';
       const data = `{"id":"loadingWebGL","sid":"` + webglState + '' + guid + `","eid":"` + expID + `","mid":"0","cat":"` + webglState + `","meta":"` + webglState + ' Group:' + group + `","date":"` + datetime + `"}`;
       xhr.send(data);
     }

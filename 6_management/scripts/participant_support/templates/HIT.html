@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <script type='text/javascript' src='https://s3.amazonaws.com/mturk-public/externalHIT_v1.js'></script>
+  <script>
+  	console.log("### START");
+	function setChallenge(hitServerUrl,workerId,hitId,assignmentId){
+	  // construct an HTTP request
+	  console.log("### FUNCTION CALLED");
+	  var xhr = new XMLHttpRequest();
+	  xhr.open("POST", hitServerUrl, true);
+	  xhr.setRequestHeader("Content-Type", "application/json");
+	  xhr.onreadystatechange = function () {
+	      if (xhr.readyState === 4 && xhr.status === 200) {
+	      	console.log(this.responseText);
+	      	obj = JSON.parse(this.responseText);
+	      	console.log(obj['challenge']);
+	      	document.getElementById('challenge').value = obj['challenge'];
+	      	let link_val = document.getElementById('exp_link').text;
+	      	link_val = link_val.replace("EEEEEEE",obj['challenge']);
+	      	link_val = link_val.replace("GGGGGGG",obj['group']);
+	      	document.getElementById('exp_link').text=link_val;
+	      	document.getElementById('exp_link').href=link_val;
+	      }
+	  };
+	  const data = `{"workerId":"`+workerId+`", "hitId":"`+hitId+`", "assignmentId":"`+assignmentId+`"}`;
+	  // send the collected data as JSON
+	  xhr.send(data);
+
+	  xhr.onloadend = function () {
+	    // done
+	  };
+
+	};
+	const HIT_SERVER_URL = "http://localhost:8000/api/get_assignment";
+	console.log("### WID");
+        const workerId = turkGetParam('workerId','None');
+        console.log("### HID");
+        const hitId = turkGetParam('hitId','None');
+        console.log("### AID");
+        const assignmentId = turkGetParam('assignmentId','None');
+        console.log("### SET CHALLANGE");
+        setChallenge(HIT_SERVER_URL, workerId, hitId, assignmentId); 
+  </script>
+ </head>
+ <body>
+  You will find the experiment in the following link:<br>
+  <a id='exp_link' href="EXPERIMENTLINK">EXPERIMENTLINK</a>
+  <br>
+  <br>
+  <br>
+  <form name='mturk_form' method='post' id='mturk_form' action='https://www.mturk.com/mturk/externalSubmit'>
+  <input type='hidden' value='' name='assignmentId' id='assignmentId'/>
+  <input type='hidden' value='' name='challenge' id='challenge'/>
+  After completing the experiment please enter the response code below:<br>
+  <p><textarea style="resize:none" name='response_code' cols='50' rows='1'></textarea></p>
+  <p><input type='submit' id='submitButton' value='Submit' /></p></form>
+  <script language='Javascript'>turkSetAssignmentID();</script>
+ </body>
+</html>

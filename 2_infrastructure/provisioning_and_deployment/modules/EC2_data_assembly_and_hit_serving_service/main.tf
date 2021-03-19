@@ -1,0 +1,160 @@
+provider "aws" {
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
+}
+
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
+resource "tls_private_key" "data-assembly-key" {
+  algorithm   = "RSA"
+  rsa_bits = "2048"
+}
+
+resource "local_file" "public-key-pem" {
+    content     = tls_private_key.data-assembly-key.public_key_openssh
+    filename = "${path.module}/credentials/example.pem.pub"
+}
+
+resource "local_file" "private-key-pem" {
+    content     = tls_private_key.data-assembly-key.private_key_pem
+    filename = "${path.module}/credentials/example.pem"
+    file_permission = 400
+}
+
+resource "aws_key_pair" "deployer-ssh-key" {
+  key_name   = "data-assembly-ssh-key"
+  public_key = tls_private_key.data-assembly-key.public_key_openssh
+  depends_on = [tls_private_key.data-assembly-key]
+}
+
+resource "aws_security_group" "example-data-assembly-sec-group" {
+  name        = "da-security-group"
+  description = "Allow HTTP, HTTPS and SSH traffic"
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "HTTPS"
+    from_port   = 8443
+    to_port     = 8443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "HTTP"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
+  ingress {
+    description = "HTTP"
+    from_port   = 8090
+    to_port     = 8090
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "DataAssembly"
+  }
+}
+
+resource "random_password" "django-token" {
+  length           = 16
+  special          = false
+}
+
+resource "random_password" "django-secret" {
+  length           = 16
+  special          = false
+}
+
+resource "aws_instance" "data-assembly" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t2.micro"
+  associate_public_ip_address = true
+  tags = {
+    Name = "DataAssembly"
+  }
+  
+  key_name = aws_key_pair.deployer-ssh-key.key_name
+  
+  vpc_security_group_ids = [
+    aws_security_group.example-data-assembly-sec-group.id
+  ]
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = tls_private_key.data-assembly-key.private_key_pem
+    host        = self.public_ip
+  }
+
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_type = "gp2"
+    volume_size = 30
+  }
+  
+    provisioner "remote-exec" {
+    inline = [
+      "sudo apt update",
+      "sudo apt install -y apt-transport-https ca-certificates curl software-properties-common",
+      "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
+      "sudo apt-key fingerprint 0EBFCD88",
+      "sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\"",
+      "sudo apt update",
+      "echo \"INSTALLING DOCKER\"",
+      "sudo apt install -y docker-ce",
+      "echo \"ENABLING USER TO RUN DOCKER\"",
+      "sudo usermod -aG docker ubuntu",
+    ]
+  }
+  
+  provisioner "remote-exec" {
+    inline = [
+      "echo \"##### Creating results directory  #####\n\"",
+      "mkdir -p results",
+      "docker run -v $PWD/results:/go/src/app/results -e \"S3_BUCKET=${var.results_bucket_name}\" -e \"S3_ACCESS_KEY_ID=${var.access_key}\" -e \"S3_SECRET_ACCESS_KEY=${var.secret_key}\" -e \"S3_REGION=${var.region}\" -p 8080:8080 -d --restart=unless-stopped ${var.data_assembly_image_name}",
+      "echo \"##### Creating results directory  #####\n\"",
+      "mkdir -p database",
+      "docker run -v $PWD/database:/usr/src/app/database -e \"DJANGO_SUPERUSER_USERNAME=${var.django_superuser_username}\" -e \"DJANGO_SUPERUSER_PASSWORD=${var.django_superuser_password}\" -e \"DJANGO_SUPERUSER_TOKEN=${random_password.django-token.result}\" -e \"DJANGO_SECRET_KEY=${random_password.django-secret.result}\" -e \"DJANGO_EMAIL=${var.django_email}\" -p 8090:8080 -d --restart=unless-stopped ${var.participant_support_backend_image_name}",
+    ]
+  }
+}
+
+resource "aws_eip" "data-assembly-eip" {
+  vpc      = false
+  instance = aws_instance.data-assembly.id
+}

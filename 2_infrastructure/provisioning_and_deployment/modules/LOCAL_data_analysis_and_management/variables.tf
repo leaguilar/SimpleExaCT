@@ -47,3 +47,13 @@ variable "results_bucket_location" {
   type = string
   default = ""
 }
+
+variable "participant_support_backend_location" {
+  type = string
+  default = ""
+}
+
+variable "participant_support_backend_token" {
+  type = string
+  default = ""
+}

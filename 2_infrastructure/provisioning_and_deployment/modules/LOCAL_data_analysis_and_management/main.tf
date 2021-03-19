@@ -32,7 +32,9 @@ resource "docker_container" "management" {
   	"RESULTS_BUCKET_NAME=${var.results_bucket_name}",
   	"AWS_ACCESS_KEY=${var.access_key}",
   	"AWS_SECRET=${var.secret_key}",
-  	"AWS_REGION=${var.region}"
+  	"AWS_REGION=${var.region}",
+  	"PARTICIPANT_SUPPORT_BACKEND_LOCATION=${var.participant_support_backend_location}",
+  	"PARTICIPANT_SUPPORT_BACKEND_TOKEN=${var.participant_support_backend_token}",
   	]
   command=[
   	"start-notebook.sh",
@@ -43,8 +45,8 @@ resource "docker_container" "management" {
   	external=var.jupyter_lab_port
   }
   volumes {
-  	host_path=abspath("${path.module}/../../../../6_management/")
-  	container_path="/home/jovyan/work/management"
+  	host_path=abspath("${path.module}/../../../../6_management/scripts/")
+  	container_path="/home/jovyan/work/management/scripts/"
   }
   volumes {
   	host_path=abspath("${path.module}/../../../../5_data_analysis/")
