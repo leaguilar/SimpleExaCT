@@ -42,9 +42,72 @@ resource "aws_key_pair" "deployer-ssh-key" {
   depends_on = [tls_private_key.data-assembly-key]
 }
 
+resource "aws_vpc" "my_vpc" {
+  cidr_block = "192.168.0.0/16"
+
+  tags = {
+    Name = "tf-experiment-as-code"
+  }
+}
+
+resource "aws_subnet" "my_subnet" {
+  vpc_id            = aws_vpc.my_vpc.id
+  cidr_block        = "192.168.0.0/24"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "tf-experiment-as-code"
+  }
+}
+
+# internet gateway
+resource "aws_internet_gateway" "internet_gateway" {
+  depends_on = [
+    aws_vpc.my_vpc,
+  ]
+
+  vpc_id = aws_vpc.my_vpc.id
+
+  tags = {
+    Name = "internet-gateway"
+  }
+}
+
+
+# route table with target as internet gateway
+resource "aws_route_table" "IG_route_table" {
+  depends_on = [
+    aws_vpc.my_vpc,
+    aws_internet_gateway.internet_gateway,
+  ]
+
+  vpc_id = aws_vpc.my_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.internet_gateway.id
+  }
+
+  tags = {
+    Name = "IG-route-table"
+  }
+}
+
+# associate route table to public subnet
+resource "aws_route_table_association" "associate_routetable_to_public_subnet" {
+  depends_on = [
+    aws_subnet.my_subnet,
+    aws_route_table.IG_route_table,
+  ]
+  subnet_id      = aws_subnet.my_subnet.id
+  route_table_id = aws_route_table.IG_route_table.id
+}
+
+
 resource "aws_security_group" "example-data-assembly-sec-group" {
   name        = "da-security-group"
   description = "Allow HTTP, HTTPS and SSH traffic"
+  vpc_id      = aws_vpc.my_vpc.id
 
   ingress {
     description = "SSH"
@@ -89,6 +152,8 @@ resource "aws_instance" "data-assembly" {
   tags = {
     Name = "DataAssembly"
   }
+  
+  subnet_id = aws_subnet.my_subnet.id
   
   key_name = aws_key_pair.deployer-ssh-key.key_name
   

@@ -8,9 +8,6 @@ terraform {
 }
 
 
-provider "docker" {
-}
-
 resource "docker_image" "jupyter" {
   name = var.data_analysis_and_management_image_name
   keep_locally = true

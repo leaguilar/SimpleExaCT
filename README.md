@@ -47,12 +47,14 @@ Terraform will:
 - run a local docker container and mount the data analysis and hardware and participant monitoring scripts in it.
 - and finally links everything together by passing around relevant information, e.g. where the component groups can be reached
 
-5. Visit with your browser http://localhost:8888 and you will be in the Jupyter-lab instance that provides access to all the monitoring and data analysis scripts.
+5. Visit with your browser http://localhost:8888 and you will be in the Jupyter-lab instance that provides access to all the monitoring, management and data analysis scripts.
 
 Here you can:
 - serve MTurk's HITs and reward participants.
 - monitor the state of the data assembly service.
 - plot the results of the experiment
+- download your experiment results for safekeeping
+- delete your experimental results from the cloud service (necessary to delete the S3 bucket in step 6)
 
 6. Destroy the infraestructure you have created.
 ```bash
