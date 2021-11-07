@@ -19,8 +19,6 @@ public class Target : MonoBehaviour
     private void Start()
     {
         this.collider = GetComponent<Collider>();
-        this.meshRenderer = GetComponent<MeshRenderer>();
-        this.meshRenderer.enabled = false;
         Database.NextTrialStarted += OnNextTrialStarted;
     }
 
@@ -32,8 +30,9 @@ public class Target : MonoBehaviour
     private void OnNextTrialStarted(int targetNumber)
     {
         var isTarget = targetNumber == Number;
-        collider.enabled = isTarget;
-        meshRenderer.enabled = isTarget;
+        //collider.enabled = isTarget;
+        collider.isTrigger = isTarget;
+        //meshRenderer.enabled = true; //isTarget;
     }
 
     private void OnTriggerEnter(Collider collider)

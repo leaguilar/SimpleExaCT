@@ -15,14 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/LoadTrial.unity
     guid: 5b14b5a3e949b694bb0676e2f8f02f31
   - enabled: 1
-    path: Assets/Scenes/Zollverein_Base.unity
-    guid: 95124970443b7844e83b889c976f97df
-  - enabled: 1
-    path: Assets/Scenes/Zollverein_Atrium.unity
+    path: Assets/Scenes/DistributedCentralized.unity
     guid: 6e09fffb8983b4d4a8949ad9219f3ad8
-  - enabled: 1
-    path: Assets/Scenes/Zollverein_Glass.unity
-    guid: 1946e21bf2cacb74491bc081f29f3fec
   - enabled: 1
     path: Assets/Scenes/End.unity
     guid: 06055ed248edf43618de69c4a5de7112

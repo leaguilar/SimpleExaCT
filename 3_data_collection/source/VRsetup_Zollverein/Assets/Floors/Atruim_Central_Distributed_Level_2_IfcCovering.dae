@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <authoring_tool>Tridify Collada Exporter 1.0</authoring_tool>
+    </contributor>
+    <created>2019-04-29T12:12:45</created>
+    <modified>2019-04-29T12:12:45</modified>
+    <unit name="METER" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Acoustic_Ceiling_Tile_24_x_48-fx">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <diffuse>
+              <color>0.8980392217636108 0.8980392217636108 0.8980392217636108 1.0</color>
+            </diffuse>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Acoustic_Ceiling_Tile_24_x_48">
+      <instance_effect url="#Acoustic_Ceiling_Tile_24_x_48-fx"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="representation-130115-layerset-130122">
+      <mesh>
+        <source id="representation-130115-layerset-130122-positions">
+          <float_array id="representation-130115-layerset-130122-positions-array" count="72">50.818119049072266 -58.447349548339844 5.124023914337158 50.818119049072266 -58.447349548339844 5.181173801422119 -24.385080337524414 -58.447349548339844 5.181173801422119 -24.385080337524414 -58.447349548339844 5.124023914337158 -24.385080337524414 -58.447349548339844 5.124023914337158 -24.385080337524414 -58.447349548339844 5.181173801422119 -24.385080337524414 -103.65049743652344 5.181173801422119 -24.385080337524414 -103.65049743652344 5.124023914337158 -24.385080337524414 -103.65049743652344 5.124023914337158 -24.385080337524414 -103.65049743652344 5.181173801422119 50.818119049072266 -103.65049743652344 5.181173801422119 50.818119049072266 -103.65049743652344 5.124023914337158 50.818119049072266 -103.65049743652344 5.124023914337158 50.818119049072266 -103.65049743652344 5.181173801422119 50.818119049072266 -58.447349548339844 5.181173801422119 50.818119049072266 -58.447349548339844 5.124023914337158 50.818119049072266 -58.447349548339844 5.124023914337158 -24.385080337524414 -58.447349548339844 5.124023914337158 -24.385080337524414 -103.65049743652344 5.124023914337158 50.818119049072266 -103.65049743652344 5.124023914337158 50.818119049072266 -58.447349548339844 5.181173801422119 -24.385080337524414 -58.447349548339844 5.181173801422119 -24.385080337524414 -103.65049743652344 5.181173801422119 50.818119049072266 -103.65049743652344 5.181173801422119</float_array>
+          <technique_common>
+            <accessor source="#representation-130115-layerset-130122-positions-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="representation-130115-layerset-130122-normals">
+          <float_array id="representation-130115-layerset-130122-normals-array" count="72">0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 -0.999969482421875 0.0 0.0 -1.0 0.0 0.0 -0.999969482421875 0.0 0.0 -1.0 0.0 0.0 0.999969482421875 0.0 0.0 1.0 0.0 0.0 0.999969482421875 0.0 0.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#representation-130115-layerset-130122-normals-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="representation-130115-layerset-130122-texcoord-0">
+          <float_array id="representation-130115-layerset-130122-texcoord-0-array" count="48">-50.818119049072266 5.124023914337158 -50.818119049072266 5.181173801422119 24.385080337524414 5.181173801422119 24.385080337524414 5.124023914337158 58.447349548339844 5.124023914337158 58.447349548339844 5.181173801422119 103.65049743652344 5.181173801422119 103.65049743652344 5.124023914337158 -24.385080337524414 5.124023914337158 -24.385080337524414 5.181173801422119 50.818119049072266 5.181173801422119 50.818119049072266 5.124023914337158 -103.65049743652344 5.124023914337158 -103.65049743652344 5.181173801422119 -58.447349548339844 5.181173801422119 -58.447349548339844 5.124023914337158 -50.818119049072266 -58.447349548339844 24.385080337524414 -58.447349548339844 24.385080337524414 -103.65049743652344 -50.818119049072266 -103.65049743652344 50.818119049072266 -58.447349548339844 -24.385080337524414 -58.447349548339844 -24.385080337524414 -103.65049743652344 50.818119049072266 -103.65049743652344</float_array>
+          <technique_common>
+            <accessor source="#representation-130115-layerset-130122-texcoord-0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="representation-130115-layerset-130122-texcoord-1">
+          <float_array id="representation-130115-layerset-130122-texcoord-1-array" count="48">0.9993688464164734 0.0 0.9987378716468811 0.0 0.9987380504608154 0.8318358063697815 0.9993689656257629 0.8318358063697815 0.9999998807907104 0.5 0.9993689656257629 0.5 0.9993690252304077 0.9999999403953552 0.9999999403953552 0.9999999403953552 0.9981068968772888 0.8318358063697815 0.9987378716468811 0.8318358063697815 0.9987377524375916 0.0 0.9981067776679993 0.0 0.9999998807907104 0.0 0.9993689656257629 0.0 0.9993690848350525 0.5 1.0 0.5 0.499053418636322 0.8318357467651367 0.4990532100200653 0.0 0.0 1.2658509263019369e-07 1.684605734908473e-07 0.8318358063697815 0.9981066584587097 0.0 0.9981067776679993 0.8318356871604919 0.4990535080432892 0.8318357467651367 0.499053418636322 4.2195033245207014e-08</float_array>
+          <technique_common>
+            <accessor source="#representation-130115-layerset-130122-texcoord-1-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="representation-130115-layerset-130122-vertices">
+          <input semantic="POSITION" source="#representation-130115-layerset-130122-positions"/>
+        </vertices>
+        <triangles material="Acoustic_Ceiling_Tile_24_x_48" count="12">
+          <input semantic="VERTEX" source="#representation-130115-layerset-130122-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#representation-130115-layerset-130122-normals" offset="0"/>
+          <input semantic="TEXCOORD" source="#representation-130115-layerset-130122-texcoord-0" offset="0" set="0"/>
+          <input semantic="TEXCOORD" source="#representation-130115-layerset-130122-texcoord-1" offset="0" set="1"/>
+          <p>1 0 2 2 0 3 5 4 7 6 5 7 9 8 10 10 8 11 13 12 15 14 13 15 17 16 18 16 19 18 22 20 21 22 23 20 </p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="representation-126637-layerset-126676">
+      <mesh>
+        <source id="representation-126637-layerset-126676-positions">
+          <float_array id="representation-126637-layerset-126676-positions-array" count="72">50.818119049072266 26.552650451660156 5.124023914337158 50.818119049072266 26.552650451660156 5.181173801422119 -24.385080337524414 26.552650451660156 5.181173801422119 -24.385080337524414 26.552650451660156 5.124023914337158 -24.385080337524414 26.552650451660156 5.124023914337158 -24.385080337524414 26.552650451660156 5.181173801422119 -24.385080337524414 -18.650550842285156 5.181173801422119 -24.385080337524414 -18.650550842285156 5.124023914337158 -24.385080337524414 -18.650550842285156 5.124023914337158 -24.385080337524414 -18.650550842285156 5.181173801422119 50.818119049072266 -18.650550842285156 5.181173801422119 50.818119049072266 -18.650550842285156 5.124023914337158 50.818119049072266 -18.650550842285156 5.124023914337158 50.818119049072266 -18.650550842285156 5.181173801422119 50.818119049072266 26.552650451660156 5.181173801422119 50.818119049072266 26.552650451660156 5.124023914337158 50.818119049072266 26.552650451660156 5.124023914337158 -24.385080337524414 26.552650451660156 5.124023914337158 -24.385080337524414 -18.650550842285156 5.124023914337158 50.818119049072266 -18.650550842285156 5.124023914337158 50.818119049072266 26.552650451660156 5.181173801422119 -24.385080337524414 26.552650451660156 5.181173801422119 -24.385080337524414 -18.650550842285156 5.181173801422119 50.818119049072266 -18.650550842285156 5.181173801422119</float_array>
+          <technique_common>
+            <accessor source="#representation-126637-layerset-126676-positions-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="representation-126637-layerset-126676-normals">
+          <float_array id="representation-126637-layerset-126676-normals-array" count="72">0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 -1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#representation-126637-layerset-126676-normals-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="representation-126637-layerset-126676-texcoord-0">
+          <float_array id="representation-126637-layerset-126676-texcoord-0-array" count="48">-50.818119049072266 5.124023914337158 -50.818119049072266 5.181173801422119 24.385080337524414 5.181173801422119 24.385080337524414 5.124023914337158 -26.552650451660156 5.124023914337158 -26.552650451660156 5.181173801422119 18.650550842285156 5.181173801422119 18.650550842285156 5.124023914337158 -24.385080337524414 5.124023914337158 -24.385080337524414 5.181173801422119 50.818119049072266 5.181173801422119 50.818119049072266 5.124023914337158 -18.650550842285156 5.124023914337158 -18.650550842285156 5.181173801422119 26.552650451660156 5.181173801422119 26.552650451660156 5.124023914337158 -50.818119049072266 26.552650451660156 24.385080337524414 26.552650451660156 24.385080337524414 -18.650550842285156 -50.818119049072266 -18.650550842285156 50.818119049072266 26.552650451660156 -24.385080337524414 26.552650451660156 -24.385080337524414 -18.650550842285156 50.818119049072266 -18.650550842285156</float_array>
+          <technique_common>
+            <accessor source="#representation-126637-layerset-126676-texcoord-0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="representation-126637-layerset-126676-texcoord-1">
+          <float_array id="representation-126637-layerset-126676-texcoord-1-array" count="48">0.9987377524375916 0.0 0.998106837272644 0.0 0.9981069564819336 0.8318348526954651 0.9987379312515259 0.8318348526954651 0.9999998807907104 0.0 0.9993689656257629 0.0 0.9993690252304077 0.4999999701976776 0.9999999403953552 0.4999999701976776 0.9987380504608154 0.8318348526954651 0.9993689656257629 0.8318348526954651 0.9993688464164734 0.0 0.9987378716468811 0.0 0.9999998807907104 0.5 0.9993689656257629 0.5 0.9993689656257629 1.0 0.9999998807907104 1.0 0.499053418636322 4.219498350721551e-08 0.49905356764793396 0.8318347930908203 0.998106837272644 0.8318347334861755 0.9981066584587097 0.0 0.4990532398223877 0.0 0.49905338883399963 0.8318347334861755 1.4740282949787797e-07 0.8318347930908203 0.0 4.219498350721551e-08</float_array>
+          <technique_common>
+            <accessor source="#representation-126637-layerset-126676-texcoord-1-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="representation-126637-layerset-126676-vertices">
+          <input semantic="POSITION" source="#representation-126637-layerset-126676-positions"/>
+        </vertices>
+        <triangles material="Acoustic_Ceiling_Tile_24_x_48" count="12">
+          <input semantic="VERTEX" source="#representation-126637-layerset-126676-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#representation-126637-layerset-126676-normals" offset="0"/>
+          <input semantic="TEXCOORD" source="#representation-126637-layerset-126676-texcoord-0" offset="0" set="0"/>
+          <input semantic="TEXCOORD" source="#representation-126637-layerset-126676-texcoord-1" offset="0" set="1"/>
+          <p>1 0 2 2 0 3 5 4 7 6 5 7 9 8 10 10 8 11 13 12 15 14 13 15 17 16 18 16 19 18 22 20 21 22 23 20 </p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="TridifyScene">
+      <node id="3PvYJhk3D2U9BQlYj7RRlm" name="3PvYJhk3D2U9BQlYj7RRlm" type="NODE">
+        <matrix sid="transform">1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 5.175975799560547 0.0 0.0 0.0 1.0</matrix>
+        <instance_geometry url="#representation-130115-layerset-130122">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Acoustic_Ceiling_Tile_24_x_48" target="#Acoustic_Ceiling_Tile_24_x_48"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="3Pe0644mD9VR3lPPD_jxB$" name="3Pe0644mD9VR3lPPD_jxB$" type="NODE">
+        <matrix sid="transform">1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 5.175975799560547 0.0 0.0 0.0 1.0</matrix>
+        <instance_geometry url="#representation-126637-layerset-126676">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Acoustic_Ceiling_Tile_24_x_48" target="#Acoustic_Ceiling_Tile_24_x_48"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#TridifyScene"/>
+  </scene>
+</COLLADA>
