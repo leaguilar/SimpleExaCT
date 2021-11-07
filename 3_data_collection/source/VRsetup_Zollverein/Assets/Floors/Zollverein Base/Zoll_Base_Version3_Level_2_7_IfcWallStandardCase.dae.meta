@@ -65,6 +65,12 @@ ModelImporter:
     400056: 321gJYqiDEZwp0C3RFdvXf
     400058: 321gJYqiDEZwp0C3RFdvZT
     400060: //RootNode
+    2100000: Default_Wall
+    2100002: Gypsum_Wall_Board
+    2100004: Metal_Stud_Layer
+    2100006: Plywood,_Sheathing
+    2100008: Air
+    2100010: EIFS,_Exterior_Insulation
     2300000: 176ZcrDDHDWhSu5PP5j8_8
     2300002: 176ZcrDDHDWhSu5PP5j8gM
     2300004: 176ZcrDDHDWhSu5PP5j8hM

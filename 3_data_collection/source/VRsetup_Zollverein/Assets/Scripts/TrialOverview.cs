@@ -11,6 +11,10 @@ namespace Assets.Scripts
 {
     public class TrialOverview : SetupPage
     {
+    	public GameObject variation1;
+    	
+    	public GameObject variation2;
+    
         public int Repetitions = 3;
         
         public Text HeaderText;
@@ -40,25 +44,37 @@ namespace Assets.Scripts
         private Target currentTarget;
 
         private Material currentMaterial;
+        
+        private Material[] NonTargetDoorMaterials;
+        private Door[] AllDoors;
 
         private void Awake()
         {
             // Always same trial for same participant id
             Random.InitState(Database.ParticipantId?.GetHashCode() / 2  ?? 0 +
                              SceneManager.GetActiveScene().name.GetHashCode() / 2);
+                                           
+            NonTargetDoorMaterials = Resources.LoadAll<Material>("NonTargetDoorMaterials");
+
             
             var allTargets = FindObjectsOfType<Target>();
-
+            AllDoors = FindObjectsOfType<Door>();
+            
             tasks = new List<Target>(allTargets.Length * Repetitions);
             for (var i = 0; i < Repetitions; i++)
             {
                 RandomizeOrder(allTargets);
                 tasks.AddRange(allTargets);
             }
+            
+            
+            
+            Debug.Log(Repetitions);
+            Debug.Log(allTargets.Length);
 
             this.totalTasks = this.tasks.Count;
             
-            var allMaterials = Resources.LoadAll<Material>("TargetMaterials/");
+            var allMaterials = Resources.LoadAll<Material>("TargetDoorMaterials/");
             materials = new List<Material>(allTargets.Length * Repetitions);
 
             if (allMaterials.Length == 0)
@@ -68,6 +84,14 @@ namespace Assets.Scripts
                 Application.Quit(666);
                 return;
             }
+            
+            Debug.Log(Database.ParticipantGroup);
+            if (Database.ParticipantGroup == 2){
+            	variation2.SetActive(true);
+            }else{
+            	variation1.SetActive(true);
+            }
+            
 
             while (materials.Count < tasks.Count)
             {
@@ -99,6 +123,18 @@ namespace Assets.Scripts
 
             FPSController.enabled = false;
             Recorder.StopRecording();
+            
+            foreach (var door in AllDoors)
+            {
+                var random = Random.Range(0, NonTargetDoorMaterials.Length);
+                var randomMaterial = NonTargetDoorMaterials[random];
+                var doorRenderer = door.gameObject.GetComponent<Renderer>();
+                var mats = doorRenderer.sharedMaterials;
+                mats[0] = randomMaterial;
+                doorRenderer.sharedMaterials = mats;
+            }
+            
+    
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
@@ -121,15 +157,16 @@ namespace Assets.Scripts
             renderer.sharedMaterial = currentMaterial;
 
             HeaderText.text = $"Task Goal #{Database.TrialResults.Count + 1} of {this.totalTasks}";
-            DescriptionText.text = $"Find the {currentTarget.Description} and go to the {materialName} ball that is placed there.";
+            DescriptionText.text = $"Go go to through door with the frame of the following color.";
             DescriptionImage.color = currentMaterial.color;
         }
 
         protected override void OnApplyPage()
         {
+            Debug.Log("Applying page");
             if (HintText != null)
             {
-                HintText.text = $"Destination: {currentTarget.Description}\nShape: Ball\nColor: {currentMaterial.name.ToLowerInvariant()}";
+                HintText.text = $"Frame color: {currentMaterial.name.ToLowerInvariant()}";
             }
 
             if (HintImage != null)
@@ -155,7 +192,7 @@ namespace Assets.Scripts
         private void PlaceFPSController()
         {
             var position = Spawnpoint.transform.position + Vector3.up * 0.9f;
-            var rotation = Quaternion.Euler(0, 0, 0);
+            var rotation = Quaternion.Euler(0, -90, 0);
 
             FPSController.gameObject.PlaceObject(position, rotation);
         }

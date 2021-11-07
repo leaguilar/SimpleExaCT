@@ -69,6 +69,15 @@ ModelImporter:
     400060: 321gJYqiDEZwp0C3lFdvXf
     400062: 321gJYqiDEZwp0C3lFdvZT
     400064: //RootNode
+    2100000: Gypsum_Wall_Board
+    2100002: Air
+    2100004: Concrete_Masonry_Units
+    2100006: Rigid_insulation
+    2100008: Metal_Furring
+    2100010: Default_Wall
+    2100012: Metal_Stud_Layer
+    2100014: Plywood,_Sheathing
+    2100016: EIFS,_Exterior_Insulation
     2300000: 0BYkzteV95luMhRUJaheHh
     2300002: 0BYkzteV95luMhRUJaheLY
     2300004: 176ZcrDDHDWhSu5Pj5j8_8
